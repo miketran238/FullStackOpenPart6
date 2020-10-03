@@ -34,7 +34,7 @@
 
 import React from 'react'
 import AnecdoteForm from './components/AnecdoteForm'
-import AnecdoteList from './components/AnecdoteList.js'
+import AnecdoteList from './components/Anecdotes.js'
 
 const App = () => {
   return (
