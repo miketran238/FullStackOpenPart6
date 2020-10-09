@@ -17,6 +17,12 @@ const asObject = (anecdote) => {
   }
 }
 
+const compareByVote = (a,b) => {
+  if (a.votes > b.votes) return -1;
+  if (b.votes > a.votes) return 1;
+  return 0;
+}
+
 const initialState = anecdotesAtStart.map(asObject)
 
 const anecdoteReducer = (state = initialState, action) => {
@@ -32,10 +38,13 @@ const anecdoteReducer = (state = initialState, action) => {
         ...anecdoteToChange,
         votes: anecdoteToChange.votes + 1
       }
-      return state.map(anecdote => 
+      
+      const newState = state.map(anecdote => 
         anecdote.id !== id ? anecdote : changedAnecdote
       )
-      }
+      newState.sort(compareByVote)
+      return newState
+    }
     default:
       return state
   }
